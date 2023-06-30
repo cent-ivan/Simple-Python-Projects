@@ -1,11 +1,28 @@
-import os
+#import os
 import random
 
-gun = [0,0,0,0,0,1]
+def shootGun():
+    gun = [0,0,0,0,0,1]
 
-chamber = random.choice(gun)
+    chamber = random.choice(gun)
 
-if chamber == 0:
-    print("Phewwww")
-else:
-    os.remove("Bang") #C:\Windows\System32
+    if chamber == 0:
+        print("Phewwww")
+    else:
+        print("Bang") #C:\Windows\System32
+
+def action():
+    print("Press 's' to load the gun and test your luck")
+    try:
+        move = input(">>> ")
+    except ValueError:
+        print("Inavlid Value")
+        action()
+
+    if move == "s":
+        shootGun()
+    else:
+        print("Invalid Command")
+        action()
+
+action()
