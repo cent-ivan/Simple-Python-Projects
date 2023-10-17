@@ -81,7 +81,7 @@ def dashboard():
     #####################################################################################################
     #              BURGERS               #              SIDES             #           DRINKS            #
     #####################################################################################################
-    #                                    #                                #                             #
+    #Code:                               #Code:                           #Code:                        #
     #  B1-Regular Burger      -Php25.00  #  F1-Reguar Fries    -Php10.00  #  D1-Coke         -Php13.00  #
     #  B2-Cheese Burger       -Php30.00  #  F2-Fries w/ cheese -Php12.00  #  D2-Sprite       -Php13.00  #
     #  B3-Double Patty Burger -Php55.00  #  S1-Green Salad     -Php25.00  #  D3-Diet Coke    -Php15.00  #
