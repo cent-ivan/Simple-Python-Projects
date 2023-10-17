@@ -14,7 +14,7 @@ print("""
 #User log in logic flow
 USER = input("[] Enter User Name: ")
 if USER in CASHIER_DATA:
-    USER_PASSWORD = int(input("[] Enter Password: "))
+    User_Pass = int(input("[] Enter Password: "))
 else:
     print("\n[!]SYSTEM >>> Invalid User")
     pass
@@ -111,7 +111,7 @@ def dashboard():
 #--------------------------------------------------------------------
 
 
-if USER_PASSWORD == CASHIER_DATA[USER]:
+if User_Pass == CASHIER_DATA[USER]:
     print("\n\nWelcome",USER)
     dashboard()
 else:
