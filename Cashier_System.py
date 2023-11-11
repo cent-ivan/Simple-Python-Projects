@@ -1,5 +1,6 @@
 import time
 
+#simple pos
 CASHIER_DATA = {"Johanne Johnson":11245, "James Web":11269}
 
 #---Log In Dashboard-------------------------------------------------
