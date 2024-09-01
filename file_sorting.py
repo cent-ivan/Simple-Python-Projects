@@ -1,60 +1,74 @@
-import os
+import os 
 import shutil
-
+import time
 
 filename = {
-    "jpg":"Pictures",
+    "jpg":"Pictures", #filename type : folder to put in
     "png":"Pictures",
 
-    "mp3":"Music",
+    "mp3":"Musics",
     "mp4":"Videos",
 
     "txt":"Documents",
-    "doc":"Word Files",
+    "pdf":"Documents",
     "docx":"Word Files",
-    "pptx":"Powerpoint FIles"
+    "pptx":"Powerpoints"
 }
-#main
-
-def addFile(key):
-    dst = os.getcwd() + f"\{filename[key]}"
-
-    for content in os.listdir():
-        split = content.split(".")  #split until to the filename, gets the filename
-
-        if key == split[-1]:        
-            file = ".".join(split)  #completely joins the file name and the extension
-            source = os.getcwd() + f"\{file}"  
-            shutil.move(source, dst)
 
 
-def createFolder(key):
-    os.mkdir(os.getcwd() + f"\{filename[key]}")
-    addFile(key)
-
-#first to execute
-def run():
-    for key in filename:
-        if filename[key] in os.listdir(currentDir):
-            addFile(key)            #if the folder exist, calls the add function
+def create_folder():
+    for folder in filename.values():
+        if folder in os.listdir(): 
+            continue
         else:
-            createFolder(key)       #if the folder does not exist, it calls the create function
+            path  =  os.getcwd() + f"\\{folder}" #gets the current word directory and adds the folder name
+            os.mkdir(path)
+    print("All folders created")
+    main()
 
-        
-link_path = input("Enter path: ")
-path = link_path.strip('"')
+
+def add_file(key):
+    dst =  os.getcwd() + f"\\{filename[key]}" #get the target path of where the file will move
+    for content in os.listdir():
+        split_content = content.split(".") #turns into list, divides the filename and extension
+
+        if split_content[-1] == key: #checks the extension if it is in the right directory
+            file  = ".".join(split_content)
+            src  =  os.getcwd() + f"\\{file}" #gets the file to be moved
+            shutil.move(src, dst)
+
+    
+
+def main(): #controls the flow of the program
+    start_time  =  time.time()
+    for key in filename:
+        if filename[key] not in os.listdir():
+            create_folder()
+        else:   
+            add_file(key)
+
+    end_time = time.time()
+    print(end_time -  start_time) #calculate run time
+
+#user entered path here
+path = input("Enter path: ")
 
 if path == "":
-    print("No entered value")
+    print("No entered path")
 else:
-    currentDir = os.chdir(path)
-    run()
+    os.chdir(path) #changed the path
+    main()
+
+
+
+
+
+
 
 # source = r"C:/Users/user/Desktop/TestFolder/Revert Virus.png" 
 # dst = r"C:/Users/user/Desktop/folder"
 
 
-# shutil.move(source, dst)
 #shutil.copy(source, dst, follow_symlinks= True) <- Copy data and mode bits  a file between folders
 #shutil.copy2(source, dst) <- Copy data and metadata
 #shutil.move(source, dst) <- Moves/cut file between folders
